@@ -5,9 +5,8 @@ return {
   config = function()
     require("toggleterm").setup {
       size = 20,
-      open_mapping = [[<c-\>]],
       shading_factor = 2,
-      direction = "horizontal", -- horizontal/vertical/tab
+      direction = "horizontal",
       autochdir = true,
     }
   end,

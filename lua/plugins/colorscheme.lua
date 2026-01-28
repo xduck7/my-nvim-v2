@@ -1,13 +1,9 @@
 return {
-  {
-    "Kaikacy/Lemons.nvim",
-    version = "*",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("lemons").setup({})
-      vim.cmd.colorscheme("lemons")
-    end,
-  },
+  "nyoom-engineering/oxocarbon.nvim",
+  priority = 1000,
+  lazy = false,
+  config = function()
+    vim.opt.background = "dark"
+    vim.cmd("colorscheme oxocarbon")
+  end,
 }
-

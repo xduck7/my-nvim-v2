@@ -1,3 +1,4 @@
+
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -8,12 +9,17 @@ return {
       "MunifTanjim/nui.nvim",
     },
     cmd = "Neotree",
-    keys = {
-      { "<leader>e", "<cmd>Neotree toggle<CR>", desc = "Neo-tree" },
-    },
     config = function()
-      require("neo-tree").setup({})
+      require("neo-tree").setup({
+        filesystem = {
+          filtered_items = {
+            visible = true,
+            hide_dotfiles = false,
+            hide_hidden = false,
+            hide_gitignored = false,
+          },
+        },
+      })
     end,
   },
 }
-

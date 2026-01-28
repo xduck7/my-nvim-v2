@@ -13,7 +13,8 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 
-vim.opt.scrolloff = 12
+vim.opt.scrolloff = 15 
+
 vim.opt.sidescrolloff= 8
 vim.opt.wrap = true 
 vim.opt.termguicolors = true
