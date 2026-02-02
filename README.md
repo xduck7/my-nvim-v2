@@ -23,11 +23,10 @@ The leader key is set to `<Space>`.
 | `gd` | Normal | Go to Definition |
 | `K` | Normal | Hover Documentation |
 | `<leader>rn` | Normal | Rename Symbol |
-| `<leader>cr` | Normal | Rename Symbol (alternative) |
-| `<leader>ca` | Normal | LSP Code Action |
+| `<leader>qf` | Normal | LSP Code Action |
 | `<leader>cd` | Normal | Line Diagnostics (open float) |
-| `gi` | Normal | Go to Implementation |
-| `gr` | Normal | Find references (using Snacks picker) |
+| `gi` | Normal | Find implementations (Snacks picker) |
+| `gr` | Normal | Find references (Snacks picker) |
 
 ## Terminal
 
@@ -40,14 +39,14 @@ The leader key is set to `<Space>`.
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<S-h>` | Normal | Focus Neo-tree |
 | `<leader>e` | Normal | Toggle Neo-tree |
 
-## Window Management
+## Window Navigation
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<S-l>` | Normal | Focus previous window |
+| `<S-h>` | Normal | Focus next window (cycle) |
+| `<S-l>` | Normal | Focus previous window (cycle) |
 
 ## File Operations
 
@@ -90,15 +89,27 @@ The leader key is set to `<Space>`.
 | `<leader>lg` | Normal | Open LazyGit |
 | `<leader>gb` | Normal | Toggle Git blame window |
 | `<leader>gB` | Normal | Toggle Git blame virtual |
+| `]h` | Normal | Next git hunk (Gitsigns) |
+| `[h` | Normal | Previous git hunk (Gitsigns) |
+| `<leader>hp` | Normal | Preview git hunk (Gitsigns) |
+| `<leader>hs` | Normal, Visual | Stage git hunk (Gitsigns) |
+| `<leader>hu` | Normal | Undo stage git hunk (Gitsigns) |
 
 ## Search (Seeker)
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>ff` | Normal | Find files |
-| `<leader><leader>` | Normal | Find files (alternative) |
+| `<leader>ff` | Normal | Find files (Seeker) |
+| `<leader><leader>` | Normal | Find files (Seeker) |
 | `<leader>fg` | Normal | Grep with Seeker |
-| `<leader>/` | Normal | Grep with Seeker (alternative) |
+| `<leader>/` | Normal | Grep with Seeker |
 | `<leader>fb` | Normal | List buffers (`:ls`) |
-| `<leader>fh` | Normal | Open help (`:help`) |
+| `<leader>fh` | Normal | Open help (`:help …`) |
+
+## Neominimap
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>nm` | Normal | Toggle global minimap |
+| `<leader>nr` | Normal | Refresh global minimap |
 
