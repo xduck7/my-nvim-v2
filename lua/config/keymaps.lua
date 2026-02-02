@@ -1,14 +1,15 @@
 local map = vim.keymap.set
 
 -- LSP mappings
-map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
 map("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename Symbol" })
-map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename Symbol" })
-map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP Code Action" })
+map("n", "<leader>qf", vim.lsp.buf.code_action, { desc = "LSP Code Action" })
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
-
+map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
+vim.keymap.set("n", "gi", function()
+  Snacks.picker.lsp_implementations({
+  })
+end, { desc = "Find implementations (Snacks picker)" })
 vim.keymap.set("n", "gr", function()
   Snacks.picker.lsp_references({
   })
@@ -19,13 +20,20 @@ map("n", "<C-t>", "<cmd>ToggleTerm<cr>", { desc = "Toggle terminal" })
 map("t", "<C-t>", "<cmd>ToggleTerm<cr>", { desc = "Toggle terminal" })
 
 -- Neo-tree
-map("n", "<S-h>", function()
-  vim.cmd("Neotree focus")
-end, { desc = "Focus Neo-tree" })
 map("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Neo-tree" })
 
 -- Window navigation
-map("n", "<S-l>", "<C-w>p", { desc = "Focus previous window" })
+local function set_terminal_keymaps()
+  local opts = {buffer = 0, noremap = true, silent = true}
+  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+end
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "term://*toggleterm#*",
+  callback = set_terminal_keymaps,
+})
+map("n", "<S-h>", "<C-w>W", { desc = "Focus next window (cycle)" })
+map("n", "<S-l>", "<C-w>w", { desc = "Focus previous window (cycle)" })
 
 -- File operations
 map('n', '<leader>q', ':wq<CR>')
@@ -68,3 +76,16 @@ map("n", "<leader>fh", "<cmd>help<Space>", { desc = "Help (builtin :help …)" }
 -- Git blame
 map("n", "<leader>gb", "<cmd>BlameToggle<CR>", { desc = "Git blame: toggle (window)" })
 map("n", "<leader>gB", "<cmd>BlameToggle virtual<CR>", { desc = "Git blame: toggle (virtual)" })
+
+-- Neominimap mappings
+map("n", "<leader>nm", "<cmd>Neominimap Toggle<cr>", { desc = "Toggle global minimap" })
+map("n", "<leader>nr", "<cmd>Neominimap Refresh<cr>", { desc = "Refresh global minimap" })
+
+
+-- Gitsigns navigation и preview (buffer-local, но глобально)
+local gs = require('gitsigns')
+map('n', ']h', function() gs.next_hunk() end, { desc = 'Next git hunk' })
+map('n', '[h', function() gs.prev_hunk() end, { desc = 'Prev git hunk' })
+map('n', '<leader>hp', gs.preview_hunk, { desc = 'Preview git hunk' })
+map({'n','v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>', { desc = 'Stage git hunk' })
+map('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'Undo stage git hunk' })
